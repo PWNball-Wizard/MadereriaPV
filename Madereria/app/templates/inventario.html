@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% import 'macros.html' as macros %}
+{% import 'bootstrap/wtf.html' as wtf %}
+{% block title %}
+    {{ super() }}
+    Inventario
+{% endblock %}
+
+{% block content %}
+    <div class = "container">
+        <h2>
+            Registra un nuevo producto
+        </h2>
+    </div>
+    <div>
+        {{ wtf.quick_form(product_form) }}
+    </div>
+
+    <div class = "container">
+        <h2>
+            Inventario
+        </h2>
+    </div>
+
+    <ul class = "list-group">
+        {% for producto in productos %}
+            {{ macros.render_products_inv(producto, delete_form, update_form) }}
+        {% endfor %}
+    </ul>
+{% endblock %}

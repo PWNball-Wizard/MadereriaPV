@@ -1,0 +1,39 @@
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% macro render_items(item, delete_cart_form) %}
+    <li class="list-group-item">
+        <span class="badge">
+            Precio: {{ item.to_dict().precio}}
+        </span>
+        <span class="badge">
+            Cantidad: {{ item.to_dict().cantidad }}
+        </span>
+        {{ item.id }}
+        {{ wtf.quick_form(delete_cart_form, action = url_for('del_from_cart', product_id = item.id)) }}
+    </li>
+{% endmacro %}
+
+{% macro render_products(producto, add_cart_form) %}
+    <li class="list-group-item">
+        <span class="badge">
+            Precio: {{ producto.to_dict().precio }}
+        </span>
+        {{ producto.id}}
+        {{ prueba_id}}
+        {{ prueba_precio}}
+        {{ wtf.quick_form(add_cart_form, action=url_for('add_to_cart', product_id=producto.id)) }}
+    </li>
+{% endmacro %}
+
+{% macro render_products_inv(producto, delete_form, update_form) %}
+    <li class="list-group-item">
+        <span class="badge">
+            Precio: {{ producto.to_dict().precio }}
+        </span>
+        {{ producto.id}}
+        {{ prueba_id}}
+        {{ prueba_precio}}
+        {{ wtf.quick_form(delete_form, action=url_for('admin.inv_eliminar', product_id=producto.id)) }}
+        {{ wtf.quick_form(update_form, action=url_for('admin.inv_update', product_id=producto.id)) }}
+    </li>
+{% endmacro %}
